@@ -1,0 +1,82 @@
+<!-- <app-header></app-header>
+<div>
+    <h2>Currency Converter</h2>
+  
+    <div>
+      <label>Amount (From):</label>
+      <input [(ngModel)]="amountFrom" type="number" />
+      <select [(ngModel)]="selectedFromCurrency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <label>Amount (To):</label>
+      <input [(ngModel)]="amountTo" type="number" />
+      <select [(ngModel)]="selectedToCurrency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <button (click)="convertCurrency('from')">Convert From</button>
+      <button (click)="convertCurrency('to')">Convert To</button>
+    </div>
+  
+    <div *ngIf="exchangeRateFrom && exchangeRateTo">
+      <p>Exchange Rate (From): {{ exchangeRateFrom }}</p>
+      <p>Converted Amount (To): {{ amountTo }}</p>
+      <p>Exchange Rate (To): {{ exchangeRateTo }}</p>
+      <p>Converted Amount (From): {{ amountFrom }}</p>
+    </div>
+  </div>
+   -->
+
+   <div class="currency-converter">
+    <app-header></app-header>
+    
+    <div class="converter-container">
+      <h2>Currency Converter</h2>
+      
+      <div class="conversion-section">
+        <div class="input-group">
+          <label>Amount (From):</label>
+          <input [(ngModel)]="amountFrom" type="number" [value]="myDefaultValue"/>
+        </div>
+    
+        <div class="input-group">
+          <label>From Currency:</label>
+          <select [(ngModel)]="selectedFromCurrency">
+            <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="conversion-section">
+        <div class="input-group">
+          <label>Amount (To):</label>
+          <input [(ngModel)]="amountTo" type="number" />
+        </div>
+    
+        <div class="input-group">
+          <label>To Currency:</label>
+          <select [(ngModel)]="selectedToCurrency">
+            <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="conversion-buttons">
+        <button (click)="convertCurrency('from')">Convert From</button>
+        <button (click)="convertCurrency('to')">Convert To</button>
+      </div>
+    
+      <div *ngIf="exchangeRateFrom && exchangeRateTo" class="result-section">
+        <p>Exchange Rate (From): {{ exchangeRateFrom }}</p>
+        <p>Converted Amount (To): {{ amountTo }}</p>
+        <p>Exchange Rate (To): {{ exchangeRateTo }}</p>
+        <p>Converted Amount (From): {{ amountFrom }}</p>
+      </div>
+    </div>
+  </div>
+  
