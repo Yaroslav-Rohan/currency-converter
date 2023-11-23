@@ -7,19 +7,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  exchangeRates?: { [currency: string]: number };
+  uahEquivalentForUsd: number = 0;
+  uahEquivalentForEur: number = 0;
 
-  constructor(private http: HttpClient) { }
+  apiEndpoint = 'https://api.exchangerate-api.com/v4/latest';
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getExchangeRates();
+    this.fetchExchangeRates();
   }
 
-  getExchangeRates() {
-    const apiEndpoint = 'https://api.exchangerate-api.com/v4/latest/UAH';
-
-    this.http.get(apiEndpoint).subscribe((data: any) => {
-      this.exchangeRates = data.rates;
+  fetchExchangeRates() {
+    this.http.get(`${this.apiEndpoint}/UAH`).subscribe((data: any) => {
+      this.uahEquivalentForUsd = +(1 / data.rates.USD).toFixed(2);
+      this.uahEquivalentForEur = +(1 / data.rates.EUR).toFixed(2);
     });
   }
 }
